@@ -4,9 +4,7 @@
     cd shell
     pwd
 
-Should yield something like
-
-    /Users/username/2014-05-19-scilifelab-master
+Should yield something like '/Users/username/2014-05-19-scilifelab-master'
 
 
     ls
@@ -108,12 +106,15 @@ Sorting by population
 * in 2007, which two countries have the highest life expectancy
 * which two the lowest
 
+```
+sort -nr -k 5 2007.txt |less
+sort -nr -k 5 2007.txt |head 
+sort -nr -k 5 2007.txt |head -2
+sort -nr -k 5 2007.txt |tail -2
+```
 
-    sort -nr -k 5 2007.txt |less
-    sort -nr -k 5 2007.txt |head 
-    sort -nr -k 5 2007.txt |head -2
-    sort -nr -k 5 2007.txt |tail -2
-    # Oh no
+Oh no
+
     sort -nr -k 5 2007.txt |tail -3
 
 **Exercise:**
@@ -123,9 +124,11 @@ Sorting by population
 * what about other years?
 
 
-    sort -nr -k 6 2007.txt |head -1
-    sort -nr -k 6 2007.txt |tail -2
-    sort -nr -k 6 2007.txt |tail -2 |head -1
+```
+sort -nr -k 6 2007.txt |head -1
+sort -nr -k 6 2007.txt |tail -2
+sort -nr -k 6 2007.txt |tail -2 |head -1
+```
 
 'cut' command can also be used to display more than one column
 
@@ -163,10 +166,12 @@ Now we run it
 
 * try this out on a bunch of years
 * make another script that does the same for the life expectancy
+* e.g. ../scripts/highest_lifeExp.sh
 
-
-    #../scripts/highest_lifeExp.sh
-    sort -nr -k 5 $1 |head -1 |cut -f 2,1,5
+    
+```
+sort -nr -k 5 $1 |head -1 |cut -f 2,1,5
+```
 
 Now we want to automate
 --> Loops!
