@@ -1,7 +1,8 @@
 
 
     pwd
-    cd shell
+    cd
+    cd 2014-05-19-scilifelab-master
     pwd
 
 Should yield something like '/Users/username/2014-05-19-scilifelab-master'
