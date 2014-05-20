@@ -1767,6 +1767,12 @@ In&nbsp;[3]:
     <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">mass</span><span class="p">()</span>
                    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">atom_name</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1804,6 +1810,12 @@ In&nbsp;[4]:
     <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">residue</span><span class="p">()</span>
                    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">residues</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">residue_number</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">residues</span><span class="p">[</span><span class="n">residue_number</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">residues</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1978,6 +1990,38 @@ Vector(0.0, 0.0, 0.0)
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[10]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">water</span><span class="p">[</span><span class="s">&#39;O&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">center_of_mass</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[10]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+Vector(0.0, 0.0, 0.006509803073538889)
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="A-peptide-chains">A peptide chains<a class="anchor-link" href="#A-peptide-chains">&#182;</a></h2>
 </div>
@@ -1985,7 +2029,7 @@ Vector(0.0, 0.0, 0.0)
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[10]:
+In&nbsp;[11]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">LYS_1</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">({</span><span class="s">&#39;N&#39;</span><span class="p">:</span>    <span class="n">Atom</span><span class="p">(</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="n">Vector</span><span class="p">(</span> <span class="mf">0.3336</span><span class="p">,</span>  <span class="mf">1.0074</span><span class="p">,</span>  <span class="mf">1.0331</span><span class="p">)),</span>
@@ -2028,7 +2072,7 @@ In&nbsp;[10]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[11]:
+In&nbsp;[12]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">chain</span><span class="o">.</span><span class="n">center_of_mass</span><span class="p">()</span>
@@ -2042,7 +2086,7 @@ In&nbsp;[11]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[11]:</div>
+    Out[12]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -2060,7 +2104,7 @@ Vector(0.0009482558139534885, 1.306375, 0.8268366279069768)
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[12]:
+In&nbsp;[13]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">chain</span><span class="o">.</span><span class="n">translate_by</span><span class="p">(</span><span class="o">-</span><span class="n">chain</span><span class="o">.</span><span class="n">center_of_mass</span><span class="p">())</span>
@@ -2075,7 +2119,7 @@ In&nbsp;[12]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[12]:</div>
+    Out[13]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -2083,6 +2127,46 @@ In&nbsp;[12]:
 Vector(0.0, -6.196593625814827e-17, -1.0327656043024712e-17)
 </pre>
 
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[14]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">residue</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">residue</span><span class="o">.</span><span class="n">center_of_mass</span><span class="p">()</span>
+    <span class="k">print</span> <span class="n">residue</span><span class="p">[</span><span class="s">&#39;CA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">center_of_mass</span><span class="p">()</span>
+    <span class="k">print</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Vector(0.04646553728949479, -0.2357008620689656, 0.08054785485164392)
+Vector(0.2419517441860465, -0.26397500000000007, 0.09306337209302329)
+
+Vector(0.24815174418604652, 0.07541833333333331, -0.1622721834625323)
+Vector(0.2407517441860465, 0.06772500000000004, -0.09323662790697673)
+
+Vector(-0.20089608190091002, 0.14893949275362312, 0.03812279238287833)
+Vector(-0.11604825581395348, 0.197125, -0.10413662790697675)
+
+
+</pre>
 </div>
 </div>
 
