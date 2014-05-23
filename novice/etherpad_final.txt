@@ -1,0 +1,156 @@
+Welcome to the Software Carpentry bootcamp at SciLifeLab bootcamp - beginner level!
+
+This pad's address: https://etherpad.mozilla.org/scilifelab 
+
+Your instructors:
+- Karin Lagesen
+- Lex Nederbragt
+
+Helpers: Add your names below
+  Radovan Bast, KTH Theoretical Chemistry
+  Jose Beltran - Stockholm University
+
+Windows installer script: please try
+http://files.software-carpentry.org/SWCarpentryInstaller.exe
+
+Fixing the UTF locale error for Mac users:
+go to your home folder (simply type 'cd')
+nano .bash_profile
+
+ADD these two lines:
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+Save. Close the terminal window and open a new one.
+This should enable IPython notebook to start
+
+Please download the zip file from 
+https://github.com/NelleV/2014-05-19-scilifelab
+See right hand side, 'Download zip'
+
+Feel free to tweet about the bootcamp under hashtag #swcscilife
+
+Pipe symbol on mac: alt - 7
+
+Copying from gitbash:
+- right click top part of gitbash window
+- from the menu, select 'Edit' --> 'Mark'
+- mark text to be copied with the mouse
+- click enter (text is now in the clipboard)
+Copying to gitbash:
+- right click top part of gitbash window
+- from the menu, select 'Edit' --> 'Paste'
+
+
+
+Cut command:
+
+cut -f 4 2007.txt | sort | uniq -c
+
+-f says field, here 4
+then we have the file
+sort sorts alphabetically
+uniq shows uniq occurrences, and with -c it counts them
+
+
+Copy/paste on windows:
+
+1. Try marking the text, and then going to the editor. Then press Insert
+2. Right click on the window top - you will get an edit menu
+
+
+Shell module notes
+highest_GDP.sh:
+
+year=$1
+sort -nr -k 6 $year | head -n 1
+
+
+For this afternoon's git session:
+
+https://github.com/karinlag/testgit
+
+Install and version problems: some solutions are found here:
+
+https://github.com/swcarpentry/bc/wiki/Configuration-Problems-and-Solutions
+
+Git module notes
+
+git status --> status of the repository
+git add --> stage a file for committing
+git commit --> commit the staged file(s)
+git log --> list all commits + messages
+git diff --> list difference between current version and last commit
+git diff HEAD~2 list difference with current version and second to last commit
+git diff HEAD~4 HEAD~2 list difference between fourth-to-last and second-to-last commits
+.gitignore file --> list of file(s)/folder(s) git should ignore (commit this file!)
+git push origin master --> 'push' your latest commits 'up' to github
+git pull origin master --> 'pull' your latest commits 'down' from github
+
+
+Python module
+path: 2014-05-19-scilifelab/novice/python/
+Type  'ipython notebook'
+
+
+Code for creating figures side by side:
+
+import numpy as np
+from matplotlib import pyplot as plt
+
+data = np.loadtxt(fname='inflammation-01.csv', delimiter=',')
+
+plt.figure(figsize=(10.0, 3.0))
+
+plt.subplot(1, 3, 1)
+plt.ylabel('average')
+plt.plot(data.mean(0))
+
+plt.subplot(1, 3, 2)
+plt.ylabel('max')
+plt.plot(data.max(0))
+
+plt.subplot(1, 3, 3)
+plt.ylabel('min')
+plt.plot(data.min(0))
+
+plt.tight_layout()
+plt.show()
+
+Unit testing
+def scan(numbers):
+    results = []
+    total = 0
+    previous = 0
+    for n in numbers:
+        if n >= previous:
+            total += n
+        else:
+            total = n
+        results.append(total)
+        previous = n
+    return results
+    
+scan([1]) == [1]  
+scan([1, 2]) == [1, 3]  
+scan([1, 2, 3]) == [1, 3, 6]  
+scan([1, 5, 2, 7]) == [1, 6, 2, 9]  
+scan([1, 2, 3, 1, 2, 3]) == [1, 3, 6, 1, 3, 6]  
+scan([1, 2, 3, 4, 1, 2, 3]) == [1, 3, 6, 10, 1, 3, 6]  
+
+
+
+def test_just_one():
+    assert scan([1]) == [1]
+def test_two():
+    assert scan([1, 2]) == [1, 3]
+def test_growth_shrink(): 
+    assert scan([1, 2, 3, 4, 1, 2, 3]) == [1, 3, 6, 10, 1, 3, 6]  
+def test_empty_list():
+    assert scan([]) == []
+def test_no_change():
+    assert scan([1,1,1,]) == [1,2,3]
+def test_negative_number():
+    scan([1, -1 ,0 ,2]) == [1, -1, -1, 1]
+
